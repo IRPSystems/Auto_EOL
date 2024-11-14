@@ -1,17 +1,16 @@
 import time
+
 import pyautogui
 
-# Dictionary containing paths to the images
 images = {
     "new_serial": "images/new_serial.png",
     "run": "images/run_button.png",
     "serial": "images/serial_field.PNG",
     "mini": "images/min_py.PNG",
-    "x": "images/x.jpg"
+    "x":"images/x.jpg"
 }
 
-def safe_click(image_key, confidence=0.6, retries=2, delay=0.5):
-    """Tries to locate an image on the screen and click on it."""
+def safe_click(image_key, confidence=0.6, retries=2, delay=0.5, ):
     try:
         image = images[image_key]
         for _ in range(retries):
@@ -28,23 +27,18 @@ def safe_click(image_key, confidence=0.6, retries=2, delay=0.5):
         print(f"Error with {image_key}: {e}")
         time.sleep(1)
 
-i = 0
-x = 1
+        safe_click("file_menu", confidence=0.7)
+
+i=0
+x=0
 time.sleep(2)
-
-for i in range(10):
-    time.sleep(3)
-    # Use the correct key name from the dictionary, not a direct path
-    safe_click("new_serial")
-
-    # Move the cursor slightly and click (or remove this if unnecessary)
-    pyautogui.move(0, 10)
-    pyautogui.click()
-
-    pyautogui.typewrite('test' + str(x), interval=0.5)
-    x += 1
-    # need to add output button at the end of test
-    #  pyautogui.click(pyautogui.locateCenterOnScreen(images["run"], confidence=0.8))
-
-    # time.sleep(1800)
-
+for i in range (10):
+        time.sleep(3)
+        pyautogui.click(pyautogui.locateCenterOnScreen(r"C:\Users\ilyar\Pictures\new_serial.PNG", confidence=0.4))
+        time.sleep(1)
+        pyautogui.click(pyautogui.move(0, 10))
+        pyautogui.typewrite('test'+str(x), interval=0.5)
+        x+=1
+        #  pyautogui.click(pyautogui.locateCenterOnScreen(images["run"], confidence=0.8))
+        #need to add ok button error twice
+        # time.sleep(1800)
